@@ -1,7 +1,34 @@
-import education from './education'
-import experience from './experience'
-import ngoExperience from './ngoExperience'
-import resume from './resume'
-import skill from './skill'
+// /schemaTypes/schema.ts
 
-export const schemaTypes = [resume, experience, ngoExperience, education, skill, ]
+import { education, educationSection } from './education';
+import { contact, contactSection } from './contact';
+import { social } from './social';
+import { skill, skillsSection } from './skills';
+import { experience, experienceSection, ngoExperienceSection, earlyCareerExperienceSection, experienceDates } from './experience';
+import resume from './resume';
+
+export const schemaTypes = [
+  resume,
+
+  // Contact-related schemas
+  contact, 
+  contactSection,
+
+  // Social profiles schema
+  social,
+
+  // Skills schemas
+  skill, 
+  skillsSection,
+
+  // Education-related schemas
+  education, 
+  educationSection,
+
+  // Experience-related schemas
+  experience, 
+  experienceSection, 
+  ngoExperienceSection, 
+  earlyCareerExperienceSection, 
+  experienceDates,
+];
