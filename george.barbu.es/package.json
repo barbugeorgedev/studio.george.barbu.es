@@ -9,8 +9,7 @@
     "start": "sanity start",
     "build": "sanity build --no-minify",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
-    "postinstall": "yarn install --prefer-offline"
+    "deploy-graphql": "sanity graphql deploy"
   },
   "keywords": [
     "sanity"
