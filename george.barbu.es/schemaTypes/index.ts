@@ -4,7 +4,7 @@ import { education, educationSection } from './education';
 import { contact, contactSection } from './contact';
 import { social } from './social';
 import { skill, skillsSection } from './skills';
-import { experience, experienceSection, ngoExperienceSection, earlyCareerExperienceSection, experienceDates } from './experience';
+import { experience, experienceSection, ngoExperience, ngoExperienceSection, earlyCareerExperienceSection, experienceDates } from './experience';
 import resume from './resume';
 
 export const schemaTypes = [
@@ -27,6 +27,7 @@ export const schemaTypes = [
 
   // Experience-related schemas
   experience, 
+  ngoExperience,
   experienceSection, 
   ngoExperienceSection, 
   earlyCareerExperienceSection, 
