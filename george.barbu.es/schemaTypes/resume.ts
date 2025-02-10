@@ -57,7 +57,7 @@ export default defineType({
       name: 'social',
       title: 'Social Profiles',
       type: 'array',
-      of: [{type: 'social'}], // Use the newly created named schema
+      of: [{type: 'social'}],
       options: {label: 'Social Profiles'},
       validation: (Rule) => Rule.unique(),
     },
