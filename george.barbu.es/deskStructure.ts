@@ -1,27 +1,25 @@
 import {DocumentActionProps} from 'sanity'
 import {DocumentTextIcon} from '@sanity/icons'
+import {apiURL, webhookSecret, nextPublicURL} from './environment'
 
 export function GeneratePdfAction(props: DocumentActionProps) {
-  const apiUrl = process.env.API_URL
-  const publicApiUrl = process.env.NEXT_PUBLIC_API_URL
-
-  if (!apiUrl) {
-    console.log('API_URL is not defined')
+  if (!apiURL) {
+    console.log('apiURL is not defined', apiURL)
   }
 
-  if (!publicApiUrl) {
-    console.log('NEXT_PUBLIC_API_URL is not defined')
+  if (!nextPublicURL) {
+    console.log('nextPublicURL is not defined', nextPublicURL)
   }
 
   const handleGeneratePdf = async () => {
     console.log('📝 Triggering PDF generation for document:', props.id)
 
     try {
-      const response = await fetch(`${process.env.API_URL}/api/generate-pdf`, {
+      const response = await fetch(`${apiURL}/api/generate-pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-sanity-secret': process.env.SANITY_WEBHOOK_SECRET || '',
+          'x-sanity-secret': webhookSecret || '',
         },
         body: JSON.stringify({documentId: props.id}),
       })

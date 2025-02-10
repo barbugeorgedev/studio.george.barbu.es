@@ -1,5 +1,5 @@
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {structureTool} from 'sanity/structure'
 import {dashboardTool, projectUsersWidget, projectInfoWidget} from '@sanity/dashboard'
 import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
 import {GeneratePdfAction} from './deskStructure'
@@ -11,11 +11,11 @@ export default defineConfig({
   projectId: 'bet7jatc',
   dataset: 'production',
   plugins: [
-    deskTool(), // ✅ Ensure this is included
+    structureTool(),
+    vercelDeployTool(),
     dashboardTool({
       widgets: [projectInfoWidget(), projectUsersWidget()],
     }),
-    vercelDeployTool(),
   ],
   schema: {
     types: schemaTypes,
