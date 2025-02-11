@@ -5,6 +5,8 @@ import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
 import {GeneratePdfAction} from './deskStructure'
 import {schemaTypes} from './schemaTypes'
 
+const isLocal = process.env.NODE_ENV === 'development' || process.env.SANITY_STUDIO_ENV === 'local'
+
 export default defineConfig({
   name: 'default',
   title: 'george.barbu.es',
@@ -25,6 +27,10 @@ export default defineConfig({
       if (schemaType !== 'resume') return prev
 
       const deleteActionIndex = prev.findIndex((action) => action.action === 'delete')
+
+      if (!isLocal) {
+        return prev
+      }
 
       if (deleteActionIndex === -1) {
         return [...prev, GeneratePdfAction]
