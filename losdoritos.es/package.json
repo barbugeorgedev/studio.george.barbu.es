@@ -22,7 +22,7 @@
     "react-dom": "^18.2.0",
     "rimraf": "^6.0.1",
     "sanity": "^3.75.0",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.1",
