@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {colorInput} from '@sanity/color-input'
 import {schemaTypes} from './schemaTypes'
 import {clearCacheTool} from './topMenu/clearCacheTool' // Import the new tool
-import {apiId, buildHookId, siteName} from 'env'
+import {apiId, buildHookId, siteName} from './env'
 import {dashboardTool} from '@sanity/dashboard'
 import {netlifyWidget} from 'sanity-plugin-dashboard-widget-netlify'
 
