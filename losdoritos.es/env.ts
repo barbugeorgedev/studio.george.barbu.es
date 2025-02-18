@@ -1,3 +1,5 @@
+export const apiURL = process.env.SANITY_STUDIO_API_URL!
+export const apiSecret = process.env.SANITY_STUDIO_API_SECRET_TOKEN!
 export const apiId = process.env.SANITY_STUDIO_NETLIFY_API_ID!
 export const buildHookId = process.env.SANITY_STUDIO_NETLIFY_BUILD_HOOK_ID!
 export const siteName = process.env.SANITY_STUDIO_NETLIFY_SITE_NAME!

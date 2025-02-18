@@ -1,13 +1,7 @@
 import {useEffect, useState} from 'react'
 import {useToast} from '@sanity/ui'
 import {Button, Card, Text, TextInput, Stack, Select} from '@sanity/ui'
-import {Redis} from '@upstash/redis'
-import {redisUrl, redisToken} from '../../env'
-
-const redis = new Redis({
-  url: redisUrl,
-  token: redisToken,
-})
+import {apiURL, apiSecret} from '../../env'
 
 export const ClearCacheAction = () => {
   const toast = useToast()
@@ -17,24 +11,24 @@ export const ClearCacheAction = () => {
   const [availableKeys, setAvailableKeys] = useState<string[]>([]) // Dropdown options
   const [selectedKey, setSelectedKey] = useState<string>('') // Selected key
 
-  // 🔄 Fetch all keys when component mounts
+  // Fetch all keys when component mounts
   useEffect(() => {
     const fetchKeys = async () => {
       try {
-        let cursor = '0'
-        let allKeys: string[] = []
+        const response = await fetch(`${apiURL}/api/cache/keys`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${apiSecret}`,
+            'Content-Type': 'application/json',
+          },
+        })
 
-        do {
-          const response = await redis.scan(cursor, {match: '*', count: 100})
-          if (!response || !Array.isArray(response)) {
-            throw new Error('Invalid response from Redis')
-          }
-
-          cursor = response[0] // Cursor (still a string)
-          allKeys = [...allKeys, ...(response[1] ?? [])] // Ensure keys exist
-        } while (cursor !== '0')
-
-        setAvailableKeys(allKeys)
+        const data = await response.json()
+        if (data.success) {
+          setAvailableKeys(data.keys)
+        } else {
+          console.error('Error fetching keys:', data.message)
+        }
       } catch (error) {
         console.error('Failed to fetch keys:', error)
       }
@@ -46,30 +40,24 @@ export const ClearCacheAction = () => {
   const handleClearCache = async (mode: 'all' | 'days' | 'pattern' | 'dropdown') => {
     setLoading(true)
     try {
-      if (mode === 'all') {
-        await redis.flushdb()
-        toast.push({title: 'All cache cleared!', status: 'success'})
+      const response = await fetch(`${apiURL}/api/cache/clear`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiSecret}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({mode, days, keyPattern, selectedKey}),
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        toast.push({title: data.message, status: 'success'})
+
+        if (mode === 'dropdown') {
+          setAvailableKeys((prevKeys) => prevKeys.filter((key) => key !== selectedKey))
+        }
       } else {
-        let keysToDelete: string[] = []
-
-        if (mode === 'days') {
-          const now = new Date()
-          const daysAgo = new Date(now.setDate(now.getDate() - parseInt(days)))
-          const formattedDate = daysAgo.toISOString().split('T')[0] // YYYY-MM-DD
-          keysToDelete = await redis.keys(`*:${formattedDate}`)
-        } else if (mode === 'pattern') {
-          keysToDelete = await redis.keys(keyPattern)
-        } else if (mode === 'dropdown' && selectedKey) {
-          keysToDelete = [selectedKey] // Delete only the selected key
-        }
-
-        if (keysToDelete.length > 0) {
-          await redis.del(...keysToDelete)
-          toast.push({title: `${keysToDelete.length} cache entries deleted!`, status: 'success'})
-          setAvailableKeys((prevKeys) => prevKeys.filter((key) => !keysToDelete.includes(key))) // Update dropdown
-        } else {
-          toast.push({title: 'No matching keys found.', status: 'warning'})
-        }
+        toast.push({title: data.message, status: 'warning'})
       }
     } catch (error) {
       toast.push({title: 'Failed to clear cache', status: 'error'})
@@ -84,6 +72,7 @@ export const ClearCacheAction = () => {
           Cache Management
         </Text>
 
+        {/* Clear by Days */}
         <TextInput
           value={days}
           onChange={(e) => setDays(e.currentTarget.value)}
@@ -96,7 +85,7 @@ export const ClearCacheAction = () => {
           onClick={() => {
             if (
               window.confirm(
-                `Are you sure you want to clear the cache for the last ${days || 'X'} days? This action is irreversible.`,
+                `Are you sure you want to clear the cache for the last ${days || 'X'} days?`,
               )
             ) {
               handleClearCache('days')
@@ -104,6 +93,7 @@ export const ClearCacheAction = () => {
           }}
         />
 
+        {/* Clear by Dropdown */}
         <Select value={selectedKey} onChange={(e) => setSelectedKey(e.currentTarget.value)}>
           <option value="">Select a key to delete</option>
           {availableKeys.map((key) => (
@@ -119,7 +109,7 @@ export const ClearCacheAction = () => {
           onClick={() => {
             if (
               window.confirm(
-                `Are you sure you want to delete the cache for the selected key "${selectedKey}"? This action is irreversible.`,
+                `Are you sure you want to delete the cache for the selected key "${selectedKey}"?`,
               )
             ) {
               handleClearCache('dropdown')
@@ -128,6 +118,7 @@ export const ClearCacheAction = () => {
           disabled={!selectedKey}
         />
 
+        {/* Clear by Pattern */}
         <TextInput
           value={keyPattern}
           onChange={(e) => setKeyPattern(e.currentTarget.value)}
@@ -138,15 +129,17 @@ export const ClearCacheAction = () => {
           text="Clear Specific Keys (Pattern)"
           loading={loading}
           onClick={() => {
-            const confirmationMessage = keyPattern
-              ? `Are you sure you want to clear the cache for the pattern "${keyPattern}"? This action is irreversible.`
-              : 'Are you sure you want to clear cache? This action is irreversible.'
-            if (window.confirm(confirmationMessage)) {
+            if (
+              window.confirm(
+                `Are you sure you want to clear cache for the pattern "${keyPattern}"?`,
+              )
+            ) {
               handleClearCache('pattern')
             }
           }}
         />
 
+        {/* Flush All */}
         <Button
           tone="critical"
           text="Flush All Cache"
