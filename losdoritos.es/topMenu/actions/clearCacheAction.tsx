@@ -2,10 +2,11 @@ import {useEffect, useState} from 'react'
 import {useToast} from '@sanity/ui'
 import {Button, Card, Text, TextInput, Stack, Select} from '@sanity/ui'
 import {Redis} from '@upstash/redis'
+import {redisUrl, redisToken} from '../../env'
 
 const redis = new Redis({
-  url: process.env.SANITY_STUDIO_UPSTASH_REDIS_REST_URL!,
-  token: process.env.SANITY_STUDIO_UPSTASH_REDIS_REST_TOKEN!,
+  url: redisUrl,
+  token: redisToken,
 })
 
 export const ClearCacheAction = () => {
