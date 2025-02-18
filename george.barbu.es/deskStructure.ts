@@ -1,6 +1,6 @@
 import {DocumentActionProps} from 'sanity'
 import {DocumentTextIcon} from '@sanity/icons'
-import {apiURL, webhookSecret, nextPublicURL} from './environment'
+import {apiURL, webhookSecret, nextPublicURL} from './env'
 
 export function GeneratePdfAction(props: DocumentActionProps) {
   if (!apiURL) {
