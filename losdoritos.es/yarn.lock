@@ -2523,7 +2523,7 @@
     react-refractor "^2.2.0"
     use-effect-event "^1.0.2"
 
-"@sanity/ui@^2.10.9":
+"@sanity/ui@^2.10.9", "@sanity/ui@^2.13.5":
   version "2.13.5"
   resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-2.13.5.tgz#5614ad9a7cecae0bc6b2a1d2e94e50b1166c328b"
   integrity sha512-RJD4+llDBdJh5bte4JFtvzc1Hh7ga5jFxSDvOqheNbUqzCB4+lZQfvRaxntJvLxJP7tBrbKwFX6BsuKvWJ6WLA==
@@ -2583,10 +2583,10 @@
     "@types/uuid" "^8.0.0"
     uuid "^8.0.0"
 
-"@sanity/vision@^3.75.0":
-  version "3.75.0"
-  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-3.75.0.tgz#bedf56028f9bcf458c22df79d8d42f117876e5bd"
-  integrity sha512-8aHSfWCV1jdh2Y909s+gDCB8XnmQ21KqeOkHVbeUTxHT50r/SwgOulnREPulfZ4It6WfycJAJeGnLPv1cuhStg==
+"@sanity/vision@^3.76.0":
+  version "3.76.0"
+  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-3.76.0.tgz#13016ea8d805647b4b37f75fdd8e3e2aec7cb983"
+  integrity sha512-/5z9Cgt/R1xso8a8dHlhu0toASKQJka6655rwzidYw9uFanX+2W1+CJDfJqrDCT9XlKOTqLbjviZYMGMuFGHcg==
   dependencies:
     "@codemirror/autocomplete" "^6.1.0"
     "@codemirror/commands" "^6.0.1"
@@ -2600,15 +2600,15 @@
     "@rexxars/react-json-inspector" "^9.0.1"
     "@rexxars/react-split-pane" "^1.0.0"
     "@sanity/color" "^3.0.0"
-    "@sanity/icons" "^3.5.7"
-    "@sanity/ui" "^2.12.3"
+    "@sanity/icons" "^3.6.0"
+    "@sanity/ui" "^2.13.5"
     "@uiw/react-codemirror" "^4.11.4"
     is-hotkey-esm "^1.0.0"
     json-2-csv "^5.5.1"
     json5 "^2.2.3"
     lodash "^4.17.21"
     quick-lru "^5.1.1"
-    react-compiler-runtime "19.0.0-beta-30d8a17-20250209"
+    react-compiler-runtime "19.0.0-beta-21e868a-20250216"
     react-fast-compare "^3.2.2"
 
 "@sanity/visual-editing-types@^1.0.6":
