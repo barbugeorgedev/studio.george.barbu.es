@@ -1,5 +1,7 @@
 // /schemaTypes/schema.ts
 
+import {settings, themeSettings} from './settings'
+import {seoSection} from './seo'
 import {education, educationSection} from './education'
 import {contact, contactSection} from './contact'
 import {social} from './social'
@@ -42,4 +44,9 @@ export const schemaTypes = [
   ngoExperienceSection,
   earlyCareerExperienceSection,
   experienceDates,
+
+  settings,
+  themeSettings,
+
+  seoSection,
 ]

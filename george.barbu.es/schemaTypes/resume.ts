@@ -11,6 +11,17 @@ export default defineType({
       type: 'string',
     },
     {
+      name: 'settings',
+      title: 'Settings',
+      type: 'reference',
+      to: [{type: 'settings'}],
+    },
+    {
+      name: 'seoSection',
+      title: 'SEO Section',
+      type: 'seoSection',
+    },
+    {
       name: 'mainImage',
       title: 'CV Image',
       type: 'image',
@@ -61,11 +72,24 @@ export default defineType({
       options: {label: 'Social Profiles'},
       validation: (Rule) => Rule.unique(),
     },
+    {
+      name: 'homepage',
+      type: 'boolean',
+      title: 'Set as Homepage',
+    },
   ],
   preview: {
     select: {
       title: 'cvpurpose',
       subtitle: 'role',
+      homepage: 'homepage',
+    },
+    prepare(selection) {
+      const {title, subtitle, homepage} = selection
+      return {
+        title: title,
+        subtitle: `${homepage ? '🏠 Homepage - ' : ''}${subtitle}`,
+      }
     },
   },
 })
