@@ -1,4 +1,4 @@
-import { defineType } from 'sanity';
+import {defineType} from 'sanity'
 
 export default defineType({
   name: 'skillsSection',
@@ -9,16 +9,27 @@ export default defineType({
       name: 'label',
       title: 'Section Label',
       type: 'string',
-      initialValue: 'Skills'
+      initialValue: 'Skills',
+    },
+    {
+      name: 'view',
+      title: 'View',
+      type: 'string',
+      initialValue: 'tags',
+      options: {
+        list: [
+          {title: 'tags', value: 'tags'},
+          {title: 'list', value: 'list'},
+        ],
+        layout: 'dropdown',
+      },
     },
     {
       name: 'items',
       title: 'Skills',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'skill' }] }],
-      validation: (Rule) => Rule.unique()
-    }
-  ]
-});
-
-
+      of: [{type: 'reference', to: [{type: 'skill'}]}],
+      validation: (Rule) => Rule.unique(),
+    },
+  ],
+})
