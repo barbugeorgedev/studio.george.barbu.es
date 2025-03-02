@@ -7,6 +7,7 @@ import {clearCacheTool} from './topMenu/clearCacheTool' // Import the new tool
 import {apiId, buildHookId, siteName} from './env'
 import {dashboardTool} from '@sanity/dashboard'
 import {netlifyWidget} from 'sanity-plugin-dashboard-widget-netlify'
+import {wheelStructure} from './deskStructure'
 
 export default defineConfig({
   name: 'default',
@@ -16,10 +17,11 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    structureTool(),
-    visionTool(),
-    colorInput(),
+    structureTool({
+      structure: (S) => wheelStructure(S),
+    }),
     clearCacheTool(),
+    colorInput(),
     dashboardTool({
       widgets: [
         netlifyWidget({
@@ -35,6 +37,7 @@ export default defineConfig({
         }),
       ],
     }),
+    visionTool(),
   ],
 
   schema: {

@@ -1,7 +1,27 @@
-import slide from './slide'
-import settings from './settings'
 import wheel from './wheel'
-import ad from './ad'
+import slide from './wheel/slide'
+import ad from './wheel/ad'
+import settings from './wheel/settings'
 import contact from './contactForm'
+import blockContent from './blockContent'
 
-export const schemaTypes = [wheel, settings, slide, ad, contact]
+import contentPage from './pages/contentPage'
+import contactPage from './pages/contactPage'
+
+import header from './layout/header'
+import footer from './layout/footer'
+import menu from './layout/menu'
+
+export const schemaTypes = [
+  contact,
+  wheel,
+  slide,
+  ad,
+  settings,
+  contentPage,
+  contactPage,
+  header,
+  footer,
+  menu,
+  blockContent,
+]
