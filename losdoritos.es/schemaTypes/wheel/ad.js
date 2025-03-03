@@ -83,6 +83,20 @@ export default {
           type: 'string',
         },
         {
+          name: 'ctaBackgroundColor',
+          title: 'CTA Background Color',
+          type: 'string',
+          description:
+            'Background color for the CTA button. Accepts color names like "black" or hex codes like "#0d0e12".',
+        },
+        {
+          name: 'ctaTextColor',
+          title: 'CTA Text Color',
+          type: 'string',
+          description:
+            'Text color for the CTA button. Accepts color names like "white" or hex codes like "#ffffff".',
+        },
+        {
           name: 'showTime',
           title: 'Show Time',
           type: 'boolean',

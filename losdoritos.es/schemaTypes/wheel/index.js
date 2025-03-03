@@ -11,6 +11,19 @@ export default {
       type: 'string',
     },
     {
+      name: 'frontWheelName',
+      title: 'On page Wheel Name',
+      type: 'string',
+    },
+    {
+      name: 'wheelImage',
+      title: 'Wheel Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -44,33 +57,16 @@ export default {
       type: 'reference',
       to: [{type: 'settings'}],
     },
-
     {
       name: 'slides',
       title: 'Slides',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'slide'}]}],
     },
-
     {
       name: 'homepage',
       type: 'boolean',
       title: 'Set as Homepage',
-      validation: (Rule) =>
-        Rule.custom(async (value, context) => {
-          if (value) {
-            const {getClient} = context
-            const client = getClient({apiVersion: '2023-01-01'})
-            const existingHomepage = await client.fetch(
-              `*[_type == "wheel" && homepage == true && _id != $id][0]`,
-              {id: context.document._id},
-            )
-            if (existingHomepage) {
-              return 'Only one wheel can be set as the homepage.'
-            }
-          }
-          return true
-        }),
     },
   ],
   preview: {
@@ -78,12 +74,14 @@ export default {
       title: 'wheelName',
       subtitle: 'slug.current',
       homepage: 'homepage',
+      image: 'wheelImage',
     },
     prepare(selection) {
-      const {title, subtitle, homepage} = selection
+      const {title, subtitle, homepage, image} = selection
       return {
         title: title,
         subtitle: `${homepage ? '🏠 Homepage - ' : ''}${subtitle}`,
+        media: image ? image : null,
       }
     },
   },

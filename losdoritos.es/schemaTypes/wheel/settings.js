@@ -107,6 +107,189 @@ export default {
       initialValue: 1,
     },
     {
+      name: 'mainBackgroundColor',
+      title: 'Page Background Color',
+      type: 'string',
+      description:
+        'Background color for the entire Page. Accepts color names like "black" or hex codes like "#0d0e12".',
+    },
+    {
+      name: 'mainTextColor',
+      title: 'Main Text Color',
+      type: 'string',
+      description:
+        'Text color for the entire Page. Accepts color names like "white" or hex codes like "#ffffff".',
+    },
+    {
+      name: 'ctaBackgroundColor',
+      title: 'CTA Background Color',
+      type: 'string',
+      description:
+        'Background color for the CTA button. Accepts color names like "black" or hex codes like "#0d0e12".',
+    },
+    {
+      name: 'ctaTextColor',
+      title: 'CTA Text Color',
+      type: 'string',
+      description:
+        'Text color for the CTA button. Accepts color names like "white" or hex codes like "#ffffff".',
+    },
+    {
+      name: 'centerButton',
+      title: 'Center Button Settings',
+      type: 'object',
+      fields: [
+        {
+          name: 'showHide',
+          title: 'Show / Hide',
+          type: 'boolean',
+          initialValue: true,
+        },
+        {
+          name: 'icon',
+          title: 'Icon Settings',
+          type: 'object',
+          description:
+            'You can browse the available icons at: https://react-icons.github.io/react-icons/',
+          fields: [
+            {
+              name: 'size',
+              title: 'Size',
+              type: 'number',
+            },
+            {
+              name: 'color',
+              title: 'Color',
+              type: 'string',
+            },
+            {
+              name: 'family',
+              title: 'Icon Family',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Font Awesome (fa)', value: 'fa'},
+                  {title: 'Ant Design (ai)', value: 'ai'},
+                  {title: 'Material Design (md)', value: 'md'},
+                  {title: 'Ionicons (io)', value: 'io'},
+                  {title: 'Typicons (ti)', value: 'ti'},
+                  {title: 'Game Icons (gi)', value: 'gi'},
+                  {title: 'Weather Icons (wi)', value: 'wi'},
+                  {title: 'Feather Icons (fi)', value: 'fi'},
+                  {title: 'Bootstrap Icons (bs)', value: 'bs'},
+                  {title: 'Remix Icons (ri)', value: 'ri'},
+                  {title: 'CSS.gg Icons (cg)', value: 'cg'},
+                  {title: 'VS Code Icons (vsc)', value: 'vsc'},
+                  {title: 'Lucide Icons (lu)', value: 'lu'},
+                  {title: 'Simple Line Icons (sl)', value: 'sl'},
+                  {title: 'Octicons (go)', value: 'go'},
+                ],
+              },
+            },
+            {
+              name: 'name',
+              title: 'Icon Name',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'colors',
+          title: 'Button Colors',
+          type: 'object',
+          fields: [
+            {
+              name: 'primary',
+              title: 'Primary Color',
+              type: 'string',
+            },
+            {
+              name: 'secondary',
+              title: 'Secondary Color',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'iconRing',
+      title: 'Icon Ring Settings',
+      type: 'object',
+      fields: [
+        {
+          name: 'baseRadius',
+          title: 'Base Radius',
+          type: 'number',
+        },
+        {
+          name: 'iconDirection',
+          title: 'Icon Direction',
+          type: 'string',
+          options: {
+            list: [
+              {title: 'Upright', value: 'upright'},
+              {title: 'Rotated', value: 'inward'},
+            ],
+          },
+        },
+        {
+          name: 'icon',
+          title: 'Icon Settings',
+          type: 'object',
+          description:
+            'You can browse the available icons at: https://react-icons.github.io/react-icons/',
+          fields: [
+            {
+              name: 'size',
+              title: 'Size',
+              type: 'number',
+            },
+            {
+              name: 'color',
+              title: 'Color',
+              type: 'string',
+            },
+            {
+              name: 'family',
+              title: 'Icon Family',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Font Awesome (fa)', value: 'fa'},
+                  {title: 'Ant Design (ai)', value: 'ai'},
+                  {title: 'Material Design (md)', value: 'md'},
+                  {title: 'Ionicons (io)', value: 'io'},
+                  {title: 'Typicons (ti)', value: 'ti'},
+                  {title: 'Game Icons (gi)', value: 'gi'},
+                  {title: 'Weather Icons (wi)', value: 'wi'},
+                  {title: 'Feather Icons (fi)', value: 'fi'},
+                  {title: 'Bootstrap Icons (bs)', value: 'bs'},
+                  {title: 'Remix Icons (ri)', value: 'ri'},
+                  {title: 'CSS.gg Icons (cg)', value: 'cg'},
+                  {title: 'VS Code Icons (vsc)', value: 'vsc'},
+                  {title: 'Lucide Icons (lu)', value: 'lu'},
+                  {title: 'Simple Line Icons (sl)', value: 'sl'},
+                  {title: 'Octicons (go)', value: 'go'},
+                ],
+              },
+            },
+            {
+              name: 'name',
+              title: 'Icon Name',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'iconAngle',
+          title: 'Icon Angle Array',
+          type: 'array',
+          of: [{type: 'number'}],
+        },
+      ],
+    },
+    {
       name: 'template',
       title: 'Template',
       type: 'string',

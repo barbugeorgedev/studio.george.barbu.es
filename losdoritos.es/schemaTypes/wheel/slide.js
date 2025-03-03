@@ -81,6 +81,20 @@ export default {
       fields: [
         {name: 'content', title: 'Content', type: 'blockContent'},
         {name: 'ctaText', title: 'CTA Text', type: 'string'},
+        {
+          name: 'ctaBackgroundColor',
+          title: 'CTA Background Color',
+          type: 'string',
+          description:
+            'Background color for the CTA button. Accepts color names like "black" or hex codes like "#0d0e12".',
+        },
+        {
+          name: 'ctaTextColor',
+          title: 'CTA Text Color',
+          type: 'string',
+          description:
+            'Text color for the CTA button. Accepts color names like "white" or hex codes like "#ffffff".',
+        },
         {name: 'ctaUrl', title: 'CTA URL', type: 'url'},
         {
           name: 'showCloseButton',
@@ -98,6 +112,22 @@ export default {
           name: 'adCtaText',
           title: 'AD CTA Text',
           type: 'string',
+          hidden: ({parent}) => !parent?.showAdCta,
+        },
+        {
+          name: 'adCtaBackgroundColor',
+          title: 'CTA Background Color',
+          type: 'string',
+          description:
+            'Background color for the CTA button. Accepts color names like "black" or hex codes like "#0d0e12".',
+          hidden: ({parent}) => !parent?.showAdCta,
+        },
+        {
+          name: 'adCtaTextColor',
+          title: 'CTA Text Color',
+          type: 'string',
+          description:
+            'Text color for the CTA button. Accepts color names like "white" or hex codes like "#ffffff".',
           hidden: ({parent}) => !parent?.showAdCta,
         },
       ],
