@@ -1,5 +1,6 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {colorInput} from '@sanity/color-input'
 import {dashboardTool, projectUsersWidget, projectInfoWidget} from '@sanity/dashboard'
 import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
 import {GeneratePdfAction} from './deskStructure'
@@ -13,6 +14,7 @@ export default defineConfig({
   projectId: 'bet7jatc',
   dataset: 'production',
   plugins: [
+    colorInput(),
     structureTool(),
     vercelDeployTool(),
     dashboardTool({
