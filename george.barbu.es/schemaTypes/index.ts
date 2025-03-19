@@ -1,12 +1,12 @@
 // /schemaTypes/schema.ts
 
-import {settings, themeSettings} from './settings'
-import {seoSection} from './seo'
-import {education, educationSection} from './education'
-import {contact, contactSection} from './contact'
-import {social} from './social'
-import {summarySection} from './summary'
-import {skill, skillsSection} from './skills'
+import {settings, themeSettings} from './Resume/settings'
+import {seoSection} from './Resume/seo'
+import {education, educationSection} from './Resume/education'
+import {contact, contactSection} from './Resume/contact'
+import {social} from './Resume/social'
+import {summarySection} from './Resume/summary'
+import {skill, skillsSection} from './Resume/skills'
 import {
   experience,
   experienceSection,
@@ -14,8 +14,14 @@ import {
   ngoExperienceSection,
   earlyCareerExperienceSection,
   experienceDates,
-} from './experience'
-import resume from './resume'
+} from './Resume/experience'
+import resume from './Resume/intex'
+
+import contactFormPortfolio from './Portfolio/contactForm'
+import client from './Portfolio/clients'
+import category from './Portfolio/category'
+import project from './Portfolio/project'
+import galleryItem from './Portfolio/galleryItem'
 
 export const schemaTypes = [
   resume,
@@ -49,4 +55,10 @@ export const schemaTypes = [
   themeSettings,
 
   seoSection,
+
+  contactFormPortfolio,
+  client,
+  category,
+  galleryItem,
+  project,
 ]

@@ -5,6 +5,7 @@ import {dashboardTool, projectUsersWidget, projectInfoWidget} from '@sanity/dash
 import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
 import {GeneratePdfAction} from './deskStructure'
 import {schemaTypes} from './schemaTypes'
+import {studioStructure} from './deskStructure'
 
 const isLocal = process.env.NODE_ENV === 'development' || process.env.SANITY_STUDIO_ENV === 'local'
 
@@ -14,8 +15,10 @@ export default defineConfig({
   projectId: 'bet7jatc',
   dataset: 'production',
   plugins: [
+    structureTool({
+      structure: (S) => studioStructure(S),
+    }),
     colorInput(),
-    structureTool(),
     vercelDeployTool(),
     dashboardTool({
       widgets: [projectInfoWidget(), projectUsersWidget()],

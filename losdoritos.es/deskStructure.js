@@ -41,8 +41,16 @@ export const wheelStructure = (S) =>
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
-          !['wheel', 'slide', 'ad', 'settings', 'contactPage', 'header', 'footer', 'menu'].includes(
-            item.getId(),
-          ),
+          ![
+            'wheel',
+            'slide',
+            'ad',
+            'settings',
+            'contactPage',
+            'header',
+            'footer',
+            'menu',
+            'contentPage',
+          ].includes(item.getId()),
       ),
     ])

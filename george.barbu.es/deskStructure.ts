@@ -1,5 +1,6 @@
 import {DocumentActionProps} from 'sanity'
 import {DocumentTextIcon} from '@sanity/icons'
+import {StructureBuilder} from 'sanity/structure'
 import {apiURL, webhookSecret, nextPublicURL} from './env'
 
 export function GeneratePdfAction(props: DocumentActionProps) {
@@ -14,7 +15,6 @@ export function GeneratePdfAction(props: DocumentActionProps) {
   const handleGeneratePdf = async () => {
     console.log('📝 Triggering PDF generation for document:', props.id)
 
-    // Create loading mask
     const loadingMask = document.createElement('div')
     loadingMask.style.position = 'fixed'
     loadingMask.style.top = '0'
@@ -30,7 +30,6 @@ export function GeneratePdfAction(props: DocumentActionProps) {
     loadingMask.style.fontSize = '20px'
     loadingMask.style.zIndex = '999'
 
-    // Create spinner
     const spinner = document.createElement('div')
     spinner.style.border = '4px solid rgba(255, 255, 255, 0.3)'
     spinner.style.borderTop = '4px solid white'
@@ -39,12 +38,10 @@ export function GeneratePdfAction(props: DocumentActionProps) {
     spinner.style.height = '40px'
     spinner.style.animation = 'spin 1s linear infinite'
 
-    // Create text
     const text = document.createElement('div')
     text.innerText = 'Generating PDF...'
     text.style.marginTop = '10px'
 
-    // Wrap spinner and text together
     const wrapper = document.createElement('div')
     wrapper.style.display = 'flex'
     wrapper.style.flexDirection = 'column'
@@ -52,11 +49,9 @@ export function GeneratePdfAction(props: DocumentActionProps) {
     wrapper.appendChild(spinner)
     wrapper.appendChild(text)
 
-    // Add wrapper to loading mask
     loadingMask.appendChild(wrapper)
     document.body.appendChild(loadingMask)
 
-    // Add keyframes for spinner animation
     const style = document.createElement('style')
     style.innerHTML = `
       @keyframes spin {
@@ -88,7 +83,6 @@ export function GeneratePdfAction(props: DocumentActionProps) {
       console.error('❌ Error generating PDF:', error)
       alert('❌ PDF generation failed! Check logs for details.')
     } finally {
-      // Remove loading mask after request completes
       document.body.removeChild(loadingMask)
     }
   }
@@ -99,3 +93,36 @@ export function GeneratePdfAction(props: DocumentActionProps) {
     onHandle: handleGeneratePdf,
   }
 }
+
+export const studioStructure = (S: StructureBuilder) =>
+  S.list()
+    .title('Content')
+    .items([
+      S.listItem()
+        .title('Resume')
+        .child(
+          S.list()
+            .title('Resume Content')
+            .items([
+              S.documentTypeListItem('resume').title('Resumes'),
+              S.documentTypeListItem('experience').title('Experiences'),
+              S.documentTypeListItem('ngoExperience').title('NGO Experiences'),
+              S.documentTypeListItem('education').title('Education'),
+              S.documentTypeListItem('skill').title('Skills'),
+              S.documentTypeListItem('settings').title('Settings'),
+            ]),
+        ),
+
+      S.listItem()
+        .title('Portfolio')
+        .child(
+          S.list()
+            .title('Portfolio Content')
+            .items([
+              S.documentTypeListItem('project').title('Projects'),
+              S.documentTypeListItem('client').title('Clients'),
+              S.documentTypeListItem('category').title('Categories'),
+              S.documentTypeListItem('contactFormPortfolio').title('Contact Form'),
+            ]),
+        ),
+    ])
