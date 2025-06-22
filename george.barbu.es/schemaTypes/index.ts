@@ -22,6 +22,7 @@ import client from './Portfolio/clients'
 import category from './Portfolio/category'
 import project from './Portfolio/project'
 import galleryItem from './Portfolio/galleryItem'
+import customLink from './Portfolio/customLink'
 
 export const schemaTypes = [
   resume,
@@ -61,4 +62,5 @@ export const schemaTypes = [
   category,
   galleryItem,
   project,
+  customLink,
 ]

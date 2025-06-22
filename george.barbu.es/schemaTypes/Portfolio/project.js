@@ -39,6 +39,28 @@ export default {
       of: [{type: 'reference', to: [{type: 'category'}]}],
     },
     {
+      name: 'playStoreLink',
+      title: 'Play Store Link',
+      type: 'url',
+      validation: (Rule) => Rule.uri({allowRelative: false}),
+      hidden: ({document}) => {
+        const categories = document?.categories || []
+        return !categories.some((cat) => cat._ref === 'e0a78e44-b72c-4842-8591-fff7bc9f16cb') //this needs to be added to .environment file
+      },
+      description: 'Google Play Store URL for Android app',
+    },
+    {
+      name: 'appStoreLink',
+      title: 'App Store Link',
+      type: 'url',
+      validation: (Rule) => Rule.uri({allowRelative: false}),
+      hidden: ({document}) => {
+        const categories = document?.categories || []
+        return !categories.some((cat) => cat._ref === 'e7cbbfee-6520-4e29-ba22-6a60cb21347e') //this needs to be added to .environment file
+      },
+      description: 'Apple App Store URL for iOS app',
+    },
+    {
       name: 'createdAt',
       title: 'Created At',
       type: 'datetime',
@@ -50,15 +72,15 @@ export default {
       initialValue: () => new Date().toISOString(),
     },
     {
+      name: 'objective',
+      title: 'Objective',
+      type: 'text',
+    },
+    {
       name: 'challenge',
       title: 'Challenge',
       type: 'array',
       of: [{type: 'block'}],
-    },
-    {
-      name: 'objective',
-      title: 'Objective',
-      type: 'text',
     },
     {
       name: 'technologies',
@@ -71,7 +93,13 @@ export default {
       title: 'Gallery',
       type: 'array',
       of: [{type: 'galleryItem'}],
-      validation: (Rule) => Rule.max(3),
+      validation: (Rule) => Rule.max(10),
+    },
+    {
+      name: 'customLinks',
+      title: 'Custom Links',
+      type: 'array',
+      of: [{type: 'customLink'}],
     },
   ],
   preview: {

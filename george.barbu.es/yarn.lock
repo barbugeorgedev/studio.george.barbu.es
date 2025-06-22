@@ -2807,10 +2807,15 @@
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-2.11.8.tgz#90a38b7d23b5c9f728a6e7ebdac80c3f76c64c35"
   integrity sha512-C4ViXtk6eyiNTQ5OmxpfmcK6Jw+LLTi9zg9XBUD15DzC4xTHaGW9SVfUa43YtPGs3WC3M0t0K59r0GDjh52HIg==
 
-"@sanity/icons@^3.5.2", "@sanity/icons@^3.5.3", "@sanity/icons@^3.7.0":
+"@sanity/icons@^3.5.2", "@sanity/icons@^3.5.3":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-3.7.0.tgz#447f80db60e5cae4d90537b1d5ab2197c090d7f1"
   integrity sha512-MVh5C55X8Vn2oIsraSPVx4MkHvkqUimkmv7yP++IfJBCLgb38/7G2CM+GB95GTpLPRdF2m3QEwwXcaeljjqKOQ==
+
+"@sanity/icons@^3.7.0":
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-3.7.4.tgz#e992bc250d99b1b50c756a5f4751641021a646c1"
+  integrity sha512-O9MnckiDsphFwlRS8Q3kj3n+JYUZ0UzKRujnSikMZOKI0dayucRe4U2XvxikRhJnFhcEJXW2RkWJoBaCoup9Sw==
 
 "@sanity/image-url@^1.0.2", "@sanity/image-url@^1.1.0":
   version "1.1.0"
