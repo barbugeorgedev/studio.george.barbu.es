@@ -12,6 +12,13 @@ export default defineType({
       initialValue: 'Early Career Experience'
     },
     {
+      name: 'disabled',
+      title: 'Disable Section',
+      type: 'boolean',
+      initialValue: false,
+      description: 'If checked, this section will be hidden.'
+    },
+    {
       name: 'items',
       title: 'Early Career Experience',
       type: 'array',

@@ -12,6 +12,13 @@ export default defineType({
       initialValue: 'NGO Experience'
     },
     {
+      name: 'disabled',
+      title: 'Disable Section',
+      type: 'boolean',
+      initialValue: false,
+      description: 'If checked, this section will be hidden.'
+    },
+    {
       name: 'items',
       title: 'NGO Experience',
       type: 'array',

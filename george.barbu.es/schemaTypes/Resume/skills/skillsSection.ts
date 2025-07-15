@@ -25,6 +25,13 @@ export default defineType({
       },
     },
     {
+      name: 'disabled',
+      title: 'Disable Section',
+      type: 'boolean',
+      initialValue: false,
+      description: 'If checked, this section will be hidden.'
+    },
+    {
       name: 'items',
       title: 'Skills',
       type: 'array',

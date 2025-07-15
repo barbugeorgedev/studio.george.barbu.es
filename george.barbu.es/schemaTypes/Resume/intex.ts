@@ -110,33 +110,35 @@ export default defineType({
       name: 'homepage',
       type: 'boolean',
       title: 'Set as Homepage',
-      validation: (Rule) =>
-        Rule.custom(async (value, context) => {
-          if (value) {
-            const documentId = context.document?._id
-
-            if (documentId) {
-              // Query to check if another document with homepage = true exists, excluding the current one
-              const existingHomepages = await client.fetch(
-                `
-              *[_type == "resume" && homepage == true && _id != $documentId] {
-                _id
-              }
-            `,
-                {documentId},
-              )
-              // If there is another resume set as homepage, show an error
-              if (existingHomepages.length > 0) {
-                return 'Only one resume can be set as the homepage'
-              }
-            }
-          }
-
-          // Allow if there's no conflict
-          return true
-        }),
+      // Removed field-level validation
     },
   ],
+  validation: (Rule) =>
+    Rule.custom(async (document, context) => {
+      if (!document || !document.homepage) return true;
+
+      // Handle both draft and published IDs
+      const documentId = document._id;
+      if (!documentId) return true; // New document, allow
+
+      // If editing a draft, also exclude the published version, and vice versa
+      const baseId = documentId.startsWith('drafts.') ? documentId.replace(/^drafts\./, '') : documentId;
+      const excludeIds = [documentId, `drafts.${baseId}`, baseId];
+
+      const existingHomepages = await client.fetch(
+        `
+          *[_type == "resume" && homepage == true && !(_id in $excludeIds)] {
+            _id
+          }
+        `,
+        { excludeIds }
+      );
+
+      if (existingHomepages.length > 0) {
+        return 'Only one resume can be set as the homepage';
+      }
+      return true;
+    }),
   preview: {
     select: {
       title: 'cvpurpose',
