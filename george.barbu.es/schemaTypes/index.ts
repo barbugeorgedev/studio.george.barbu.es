@@ -23,6 +23,21 @@ import category from './Portfolio/category'
 import project from './Portfolio/project'
 import galleryItem from './Portfolio/galleryItem'
 import customLink from './Portfolio/customLink'
+import { 
+  song, 
+  persona, 
+  analytics, 
+  socialLinks, 
+  album, 
+  distributionConfiguration, 
+  distributionStatus,
+  spotifyConfiguration,
+  youtubeMusicConfiguration,
+  youtubeConfiguration,
+  autoSyncSettings,
+  platformStatus,
+  genre
+} from './Music'
 
 export const schemaTypes = [
   resume,
@@ -63,4 +78,18 @@ export const schemaTypes = [
   galleryItem,
   project,
   customLink,
+  // Add music schemas
+  song,
+  persona,
+  analytics,
+  socialLinks,
+  album,
+  distributionConfiguration,
+  distributionStatus,
+  spotifyConfiguration,
+  youtubeMusicConfiguration,
+  youtubeConfiguration,
+  autoSyncSettings,
+  platformStatus,
+  genre,
 ]
