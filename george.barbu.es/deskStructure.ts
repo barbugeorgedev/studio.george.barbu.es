@@ -125,4 +125,18 @@ export const studioStructure = (S: StructureBuilder) =>
               S.documentTypeListItem('contactFormPortfolio').title('Contact Form'),
             ]),
         ),
+
+      // Add Music section
+      S.listItem()
+        .title('Music')
+        .child(
+          S.list()
+            .title('Music Content')
+            .items([
+              S.documentTypeListItem('song').title('Songs'),
+              S.documentTypeListItem('album').title('Albums'),
+              S.documentTypeListItem('persona').title('Personas'),
+              S.documentTypeListItem('analytics').title('Analytics'),
+            ]),
+        ),
     ])
