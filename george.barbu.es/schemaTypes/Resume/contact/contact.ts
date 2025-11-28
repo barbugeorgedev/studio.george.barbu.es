@@ -11,6 +11,18 @@ export default defineType({
       title: 'Service'
     },
     {
+      name: 'label',
+      type: 'string',
+      title: 'Label'
+    },
+    {
+      name: 'showLabel',
+      type: 'boolean',
+      title: 'Show Label',
+      description: 'Display the Label string on the frontend',
+      initialValue: false
+    },
+    {
       name: 'value',
       type: 'string',
       title: 'Value'
