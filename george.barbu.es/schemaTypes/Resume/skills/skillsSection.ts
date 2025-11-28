@@ -20,6 +20,7 @@ export default defineType({
         list: [
           {title: 'tags', value: 'tags'},
           {title: 'list', value: 'list'},
+          {title: 'styled-list', value: 'styled-list'},
         ],
         layout: 'dropdown',
       },
